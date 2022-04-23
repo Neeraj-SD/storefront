@@ -1,13 +1,13 @@
+from django.forms import DecimalField
 from django.shortcuts import render
-from django.db.models import Q
-from django.http import HttpResponse
-from store.models import Product
+from django.contrib.contenttypes.models import ContentType
+from store.models import Collection, Product
+from tags.models import TaggedItem
 
 
 def say_hello(request):
 
-    # Products: inventory < 10 OR price < 20
-    queryset = Product.objects.filter(
-        Q(inventory__lt=10) & Q(unit_price__lt=20))
+    collection = Collection()
+    collection.title = 'Video Games'
 
-    return render(request, 'hello.html', {'name': 'Mosh', 'products': list(queryset)})
+    return render(request, 'hello.html', {'name': 'Mosh', 'orders': list(queryset)})
