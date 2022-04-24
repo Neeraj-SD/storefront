@@ -1,7 +1,7 @@
 from this import d
 from rest_framework import serializers
 from decimal import Decimal
-from store.models import Product, Collection
+from store.models import Product, Collection, Review
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -35,3 +35,13 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     # def calculate_count(self, collection: Collection):
     #     return collection.product_set.count()
+
+
+class ReviewSerialzier(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'name', 'description', 'product', 'date']
+
+    def create(self, validated_data):
+        product_id = self.context['product_id']
+        return Review.objects.create(product_id=product_id, **validated_data)
