@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'store',
     'tags',
-    'likes'
+    'likes',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'core.User'
